@@ -1,7 +1,54 @@
-# Build and Deploy a Better Spotify 2.0 Clone Music App with React 18! (Tailwind, Shazam, Redux)
-![Spotify Clone](https://i.ibb.co/mFh2kGZ/Thumbnail-2.png)
+# نغمة · Naghma
 
-### [🌟 Become a top 1% Next.js 13 developer in only one course](https://jsmastery.pro/next13)
-### [🚀 Land your dream programming job in 6 months](https://jsmastery.pro/masterclass)
+مشغّل موسيقى مستقلة أونلاين بواجهة عربية، مبني باستخدام React وVite وCapacitor لأندرويد. مستوحى من [مشروع JavaScript Mastery الأصلي](https://github.com/adrianhajdin/project_music_player).
 
-### Launch your development career with project-based coaching on [JS Mastery Pro](https://www.jsmastery.pro).
+## المميزات
+
+- استكشاف ألبومات blocSonic المتاحة على Internet Archive والبحث داخلها.
+- تشغيل ملفات MP3 الكاملة، إيقاف مؤقت، انتقال بين المقاطع، وتقديم وتأخير.
+- حفظ المفضلة محليًا على الجهاز؛ لا يلزم حساب أو مفتاح API.
+- روابط المصدر والترخيص لكل ألبوم.
+- واجهة عربية متجاوبة ودعم اتجاه RTL.
+
+الكتالوج موسيقى مستقلة، وليس كتالوج Spotify أو جميع الأغاني التجارية. البحث بأسماء الفنانين والألبومات بالإنجليزية يعطي نتائج أفضل. يلزم اتصال بالإنترنت، وقد يختلف توفر الملفات حسب المصدر والشبكة.
+
+## تحميل APK من GitHub
+
+افتح تبويب **Actions** ← **Build Android APK** ← أحدث تشغيل ناجح، ثم نزّل **Naghma-Android-APK** من **Artifacts** وفك ضغطه. يلزم تسجيل الدخول إلى GitHub لتحميل Artifacts. الملف `app-debug.apk` نسخة اختبار موقّعة بمفتاح debug، مناسبة للتثبيت المباشر وليست إصدار متجر Google Play. Android 6.0 أو أحدث مع Android System WebView محدث.
+
+قد تحتاج تشغيل Actions من تبويب Actions في الفورك إذا عطّلها GitHub تلقائيًا. البناء يعمل عند الدفع إلى `main` أو فروع `feat/**`، وعلى Pull Requests، ويمكن تشغيله يدويًا.
+
+## التشغيل والبناء محليًا
+
+المتطلبات: Node.js 22، Java 21، Android SDK 35 وBuild Tools 35.0.0.
+
+```sh
+npm ci
+npm run dev
+```
+
+لبناء أندرويد اضبط `ANDROID_HOME` أو أنشئ `android/local.properties` بمسار SDK المحلي، ثم:
+
+```sh
+npm run android:apk
+```
+
+الناتج: `android/app/build/outputs/apk/debug/app-debug.apk`.
+
+```sh
+npm run build
+```
+
+ينتج نسخة الويب في `dist/`. أدوات البناء تنزّل Gradle وتبعيات Android الرسمية عند أول تشغيل.
+
+## مصدر الموسيقى والخصوصية
+
+المصدر: [blocSonic / Internet Archive](https://archive.org/details/blocsonic). الاستعلام محصور في المجموعة والإصدارات التي تحتوي حقل ترخيص، ويتحقق التطبيق من رابط Creative Commons قبل عرض المقاطع. تتفاوت التراخيص؛ بعضها غير تجاري ولا يسمح بالمشتقات. الصوت يُبث من المصدر دون تعديل، مع إسناد الفنان وروابط الترخيص. هذه النسخة للاستخدام الشخصي غير التجاري؛ يجب مراجعة ترخيص كل إصدار قبل إعادة استخدامه أو تحقيق دخل منه.
+
+المفضلة هي بيانات وصفية وروابط محفوظة في `localStorage`، ولا يتم تنزيل الأغاني للاستماع دون اتصال. طلبات البحث والصور والصوت تذهب مباشرة إلى Internet Archive وخوادم الملفات التابعة له. الخط العربي مضمّن محليًا مع التطبيق. لا يوجد تسجيل حسابات أو تحليلات داخل التطبيق.
+
+التشغيل في الخلفية وشاشة القفل غير مضمونين بهذه النسخة؛ تكامل Media Session يعمل حسب دعم النظام، ولا توجد خدمة Android أصلية لتشغيل الصوت في الخلفية.
+
+## التحقق
+
+تم التحقق من تشغيل صوت حقيقي من المصدر، وواجهة الموبايل والبحث والمفضلة. سكربت `scripts/verify.cjs` يشغّل هذه الرحلة عبر Playwright ضد خادم التطوير، ويتطلب تثبيت Playwright وChromium. دليل نتائج الاختبار في `artifacts/verification.md`.

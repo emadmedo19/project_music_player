@@ -1,18 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { BrowserRouter as Router } from 'react-router-dom';
-import { Provider } from 'react-redux';
-
-import './index.css';
-import App from './App';
-import { store } from './redux/store';
-
-ReactDOM.createRoot(document.getElementById('root')).render(
+import "@fontsource/noto-sans-arabic/arabic-400.css";
+import "@fontsource/noto-sans-arabic/arabic-600.css";
+import "@fontsource/noto-sans-arabic/arabic-700.css";
+import "@fontsource/noto-sans-arabic/arabic-800.css";
+import "@fontsource/noto-sans-arabic/arabic-900.css";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <Provider store={store}>
-      <Router>
-        <App />
-      </Router>
-    </Provider>
+    <App />
   </React.StrictMode>,
 );
