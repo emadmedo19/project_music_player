@@ -53,14 +53,12 @@ const { chromium } = require("playwright");
   );
   console.log(
     "playback",
-    await page
-      .locator("audio")
-      .evaluate((a) => ({
-        time: a.currentTime,
-        duration: a.duration,
-        paused: a.paused,
-        src: a.currentSrc,
-      })),
+    await page.locator("audio").evaluate((a) => ({
+      time: a.currentTime,
+      duration: a.duration,
+      paused: a.paused,
+      src: a.currentSrc,
+    })),
   );
   await page.locator(".track .favorite").first().click();
   await page
