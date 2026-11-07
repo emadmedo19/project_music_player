@@ -26,3 +26,9 @@ dist-ssr
 
 # vscode
 .vscode
+# Local Android signing keys
+*.jks
+*.keystore
+
+# Local browser verification dependencies
+.playwright/

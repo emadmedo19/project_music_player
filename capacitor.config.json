@@ -1,0 +1,8 @@
+{
+  "appId": "com.naghma.music",
+  "appName": "\u0646\u063a\u0645\u0629",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "https"
+  }
+}
